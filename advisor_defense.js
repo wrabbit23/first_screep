@@ -25,12 +25,37 @@ module.exports = {
          var spawnPos=spawn.pos;
          
          //define defense points
-         var def1=getPositionAt(spawnPos.x,spawnPos.y-4);
+         
+         var rampartTemplate = [
+             { 
+                 "x" : 0,
+                 "y" : -4
+             },
+             { 
+                 "x" : 0,
+                 "y" : 4
+             },
+             { 
+                 "x" : -4,
+                 "y" : 0
+             },
+             { 
+                 "x" : 0,
+                 "y" : -4
+             }
+         ];
+         
          
          //check to see if the spawn has ramparts built
-         var look=spawn.room.lookAt(def1);
-         look.forEach(function(lookObject) {
-             //console.log(lookObject.type);
+         look.forEach(function(coords) {
+             var lookObject=spawn.room.lookAt(spawn.pos.x-coords.x,spawn.pos.y-coords.y);
+             
+             if (!lookObject.type)
+             {
+                //build a rampart!
+                
+             }
+             
          });
          //also check if normal rampart spots are blocked
          
