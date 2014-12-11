@@ -2,10 +2,6 @@ module.exports = {
 
     init: function () {
     
-        if (typeof Memory.creep_population.defender=='undefined') {
-            Memory.creep_population.defender = 0;
-        }
-
     },
 
     // Makes a defender from the given spawn
@@ -16,7 +12,6 @@ module.exports = {
             creepName
         );
          Memory.creeps[creepName].role = 'defender';
-         Memory.creep_population.defender=Memory.creep_population.defender+1;
          console.log('a new defender has been created');
     },
     
@@ -32,7 +27,7 @@ module.exports = {
                 return object.structureType==Game.STRUCTURE_RAMPART;
             }
         });
-        console.log(target)
+
         creep.moveTo(target);
 
        } else {
@@ -43,11 +38,5 @@ module.exports = {
         allSpawns[0].transferEnergy(creep, [creep.energyCapacity-creep.energy]);
         }
 
-        if (creep.ticksToLive===2)
-        {
-            Memory.creeps[name].remove();
-            Memory.creep_population.defender=Memory.creep_population.defender-1;
-        }
-        
     }
 }

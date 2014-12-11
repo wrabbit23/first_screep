@@ -2,9 +2,6 @@ module.exports = {
 
     init: function () {
     
-        if (typeof Memory.creep_population.builder=='undefined') {
-            Memory.creep_population.builder = 0;
-        }
 
     },
 
@@ -16,13 +13,11 @@ module.exports = {
             creepName
         );
          Memory.creeps[creepName].role = 'builder';
-         Memory.creep_population.builder=Memory.creep_population.builder+1;
          console.log('a new builder has been created');
     },
     
     run: function (creep) {
     
-       
       if(creep.energy > 0)
       {
         
@@ -35,14 +30,7 @@ module.exports = {
         var closestSpawn = allSpawns[0];
         creep.moveTo(allSpawns[0]);
         allSpawns[0].transferEnergy(creep, [creep.energyCapacity-creep.energy]);
-//        console.log('transferring ' + (creep.energyCapacity-creep.energy) + ' energy.  Creep has ' + creep.energy + ', capacity is '+creep.energyCapacity);
         }
-//        console.log(creep.name + ' will die in ' + creep.ticksToLive);
-        if (creep.ticksToLive===2)
-        {
-            Memory.creeps[name].remove();
-            Memory.creep_population.builder=Memory.creep_population.builder-1;
-        }
-        
+
     }
 }

@@ -14,6 +14,7 @@ var creep_types = {
 };
 
 var advisor_types = {
+    castellan: require('advisor_castellan'),
     defense: require('advisor_defense')
 };
 
@@ -22,42 +23,19 @@ creep_types.harvestor.init();
 creep_types.builder.init();
 
 //initialize advisors
+advisor_types.castellan.init();
 advisor_types.defense.init();
 
-//if we don't have enough creeps, build some
-var builderNeed=(1-Memory.creep_population.builder);
-var harvestorNeed=(4-Memory.creep_population.harvestor);
-var toBuild = null;
+//tell the defense advisor to defend spawns
+advisor_types.defense.defend(Game.spawns.Spawn1);
 
-//if (builderNeed>=harvestorNeed) toBuild='builder'
-//else if (harvestorNeed>0) toBuild='harvestor'
-//else toBuild=null;
+//advisor_types.castellan.buildCreep('builder');
 
 
 // give all the creeps instructions
 for (var goob in Game.creeps) {
     var creep = Game.creeps[goob];
     creep_types[creep.memory.role].run(creep);
-}
-
-// make a builder if we can
-if (toBuild=='builder'){
-for (var goob in Game.spawns) {
-   var spawn = Game.spawns[goob];
-    if (!spawn.spawning && spawn.energy > 120) {
-        creep_types.builder.make(spawn);
-    }
-}
-}
-
-//make a harvestor if we can
-if (toBuild=='harvestor'){
-for (var goob in Game.spawns) {
-   var spawn = Game.spawns[goob];
-    if (!spawn.spawning && spawn.energy > 120) {
-        creep_types.harvestor.make(spawn);
-    }
-}
 }
 
 

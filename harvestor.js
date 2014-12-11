@@ -1,11 +1,7 @@
 module.exports = {
 
     init: function () {
-    
-        if (typeof Memory.creep_population.harvestor=='undefined') {
-            Memory.creep_population.harvestor = 0;
-        }
-    
+
     },
 
 
@@ -17,7 +13,6 @@ module.exports = {
             creepName
         );
          Memory.creeps[creepName].role = 'harvestor';
-         Memory.creep_population.harvestor=Memory.creep_population.harvestor+1;
          console.log('a new harvestor has been created');
          
     },
@@ -40,16 +35,9 @@ module.exports = {
             if( allSpawns[x].energy > max.energy) max = allSpawns[x];
         }
         
-//        console.log('heading for lowest energy spawn '+ min);
         var target=min;
             creep.moveTo(target);
             creep.transferEnergy(target)
-        }
-//        console.log(creep.name + ' will die in ' + creep.ticksToLive);
-        if (creep.ticksToLive===2)
-        {
-            Memory.creeps[name].remove();
-            Memory.creep_population.harvestor=Memory.creep_population.harvestor-1;
         }
     }
 

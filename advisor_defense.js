@@ -2,7 +2,6 @@ module.exports = {
 
     // anything we need to run on import
     init: function () {
-        
         var creep_types = {
             defender: require('defender')
         };
@@ -13,15 +12,12 @@ module.exports = {
         if (defenderNeed) {
             this.buildDefender(creep_types);
         }
-        //defend spawn1
-        this.defend.Spawn1;
-        
         
     },
 
     // takes steps to set up defense for the spawn
     defend: function (spawn) {
-         console.log('planning defense for' + spawn);
+//         console.log('planning defense for' + spawn);
          var spawnPos=spawn.pos;
          
          //define defense points
@@ -40,20 +36,25 @@ module.exports = {
                  "y" : 0
              },
              { 
-                 "x" : 0,
-                 "y" : -4
+                 "x" : 4,
+                 "y" : 0
              }
          ];
-         
-         
+
          //check to see if the spawn has ramparts built
-         look.forEach(function(coords) {
-             var lookObject=spawn.room.lookAt(spawn.pos.x-coords.x,spawn.pos.y-coords.y);
+         rampartTemplate.forEach(function(coords) {
+             
+             var x=spawn.pos.x-coords.x
+             var y=spawn.pos.y-coords.y
+             var lookObject=spawn.room.lookAt(x,y);
+             
+//             console.log('x='+x+' y='+y+'lookObject='+lookObject[0].type)
+             
              
              if (!lookObject.type)
              {
                 //build a rampart!
-                
+                spawn.room.createConstructionSite(x,y,Game.STRUCTURE_RAMPART)
              }
              
          });
