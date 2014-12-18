@@ -5,7 +5,7 @@ module.exports = {
         var creep_types = {
             defender: require('defender')
         };
-        creep_types.defender.init();
+        //creep_types.defender.init();
         
         //build defenders if not enough
         var defenderNeed=(4-Memory.creep_population.defender);

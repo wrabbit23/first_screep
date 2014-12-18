@@ -27,8 +27,10 @@ advisor_types.castellan.init();
 advisor_types.defense.init();
 
 //tell the defense advisor to defend spawns
-advisor_types.defense.defend(Game.spawns.Spawn1);
-
+for (var goob in Game.spawns) {
+    var spawn = Game.spawns[goob];
+	advisor_types.defense.defend(spawn);
+}
 //advisor_types.castellan.buildCreep('builder');
 
 

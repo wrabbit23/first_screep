@@ -16,7 +16,6 @@ module.exports = {
     },
     
     run: function (creep) {
-    
        
       if(creep.energy >= 0)
       {
